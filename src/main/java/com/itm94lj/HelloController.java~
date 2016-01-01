@@ -1,0 +1,10 @@
+package com.itm94lj;
+
+@Controller
+public class HelloController() {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String printWelcom(ModelMap mode) {
+	model.addAttribute("message", "This is my first");
+	return "hello";
+    }
+}
