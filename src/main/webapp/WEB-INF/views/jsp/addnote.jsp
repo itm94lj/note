@@ -9,6 +9,27 @@ h2 {margin-bottom:0;font-size:18px;}
 div#content input {background-color:#EEEEEE; width:350px; height:160px}
 div#Key input {background-color:#EEEEE; width:140px}
   </style>
+  <script type="text/javascript">
+    function AddNote()
+    {
+        var KeyValue   = document.getElementById("note_key").value;
+        var ValueValue = document.getElementById("note_value").value;
+        
+        httpRe = new XMLHttpRequest();
+        httpRe.onreadystatechange=function()
+        {
+            if (httpRe.readyState == 4 &&
+                httpRe.status     == 200)
+            {
+                document.getElementById("note_value").value = 
+                    httpRe.responseText;
+            }
+        }
+        httpRe.open("GET", "procadd?key="+KeyValue+" value="+ValueValue,
+        false);
+        httpRe.send();
+    }
+  </script>
 </head>
 <body>
 <div id="header">
@@ -16,12 +37,12 @@ div#Key input {background-color:#EEEEE; width:140px}
 </div>
 <div id="Key">
 <h2>Key:</h2>
-<input type="text" name="key">
+<input type="text" id="note_key">
 </div>
 <div id="content">
 <h2>Value:</h2>
-<input type="textarea" name="value">
+<input type="textarea" id="note_value">
 </div>
-
+<button type="button" onclick="AddNote()">Add Note</button>
 </body>
 </html>

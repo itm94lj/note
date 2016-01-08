@@ -16,7 +16,7 @@ public class NoteController  {
     @RequestMapping(value = "search", method = RequestMethod.GET)
     public void searchNote(HttpServletRequest httpRequest, 
               HttpServletResponse httpResponse) throws java.io.IOException
- {
+    {
 	String key = httpRequest.getParameter("key");
 	
 	if (key.equals("love"))
@@ -27,7 +27,7 @@ public class NoteController  {
         else if (key.equals("fuck"))
 	{
 	    this.key = key;
-	    this.value = "xiaojing";
+	    this.value = "you";
         }
 	else
 	{
@@ -39,6 +39,21 @@ public class NoteController  {
 	return ;
     }
 
+    @RequestMapping(value = "procadd", method = RequestMethod.GET)
+	public void addNote(HttpServletRequest httpRequest,
+			    HttpServletResponse httpResponse) throws java.io.IOException
+    {
+	String key = httpRequest.getParameter("key");
+	String value = httpRequest.getParameter("value");
+	
+	httpResponse.getWriter().write("add note success.");
+	return ;
+    }								     
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String addNote(ModelMap model) {
+	return "addnote";
+    }
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showNote(ModelMap model) {	
 
