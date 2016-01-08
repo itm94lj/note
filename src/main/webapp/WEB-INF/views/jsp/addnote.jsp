@@ -25,7 +25,7 @@ div#Key input {background-color:#EEEEE; width:140px}
                     httpRe.responseText;
             }
         }
-        httpRe.open("GET", "procadd?key="+KeyValue+" value="+ValueValue,
+        httpRe.open("GET", "procadd?key="+KeyValue+"&value="+ValueValue,
         false);
         httpRe.send();
     }

@@ -46,7 +46,7 @@ public class NoteController  {
 	String key = httpRequest.getParameter("key");
 	String value = httpRequest.getParameter("value");
 	
-	httpResponse.getWriter().write("add note success.");
+	httpResponse.getWriter().write("add note success."+key+":"+value);
 	return ;
     }								     
 
