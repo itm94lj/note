@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.PathVariable;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import com.itm94lj.JdbcNoteDao;
+import com.itm94lj.Note;
 
 @Controller
 public class NoteController  {
@@ -45,6 +47,9 @@ public class NoteController  {
     {
 	String key = httpRequest.getParameter("key");
 	String value = httpRequest.getParameter("value");
+		Note note = new Note(key, value);
+	JdbcNoteDao noteDao = new JdbcNoteDao();
+	noteDao.insert(note);
 	
 	httpResponse.getWriter().write("add note success."+key+":"+value);
 	return ;
