@@ -27,24 +27,10 @@ public class NoteController  {
     public void searchNote(HttpServletRequest httpRequest, 
               HttpServletResponse httpResponse) throws java.io.IOException
     {
+	Note note;
 	String key = httpRequest.getParameter("key");
-	
-	if (key.equals("love"))
-	{
-	    this.key = key;
-	    this.value = "you";
-	}
-        else if (key.equals("fuck"))
-	{
-	    this.key = key;
-	    this.value = "you";
-        }
-	else
-	{
-	    this.value = "not found";
-	}
-
-	httpResponse.getWriter().write(this.value);
+	note = noteDao.findNoteByKey(key);
+	httpResponse.getWriter().write(note.getValue());
 	
 	return ;
     }
