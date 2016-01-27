@@ -9,11 +9,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import com.itm94lj.JdbcNoteDao;
 import com.itm94lj.Note;
+    import org.springframework.beans.factory.annotation.Autowired;
 
 @Controller
 public class NoteController  {
     private String value;
     private String key;
+
+    public JdbcNoteDao noteDao;
+
+    @Autowired
+    public void setNoteDao(JdbcNoteDao noteDao) {
+	this.noteDao = noteDao;
+    }
 
     @RequestMapping(value = "search", method = RequestMethod.GET)
     public void searchNote(HttpServletRequest httpRequest, 
@@ -47,8 +55,7 @@ public class NoteController  {
     {
 	String key = httpRequest.getParameter("key");
 	String value = httpRequest.getParameter("value");
-		Note note = new Note(key, value);
-	JdbcNoteDao noteDao = new JdbcNoteDao();
+	Note note = new Note(key, value);
 	noteDao.insert(note);
 	
 	httpResponse.getWriter().write("add note success."+key+":"+value);

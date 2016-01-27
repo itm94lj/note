@@ -1,9 +1,16 @@
 package com.itm94lj;
+    import org.springframework.stereotype.Component;
 
+@Component
 public class Note {
     int iNoteId;
     String sNoteKey;
     String sNoteValue;
+	
+	public Note() {
+	    this.setKey("hi");
+	    this.setValue("you");
+	}
     
     public Note(String key, String value) {
 	this.setKey(key);
